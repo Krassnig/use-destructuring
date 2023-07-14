@@ -78,7 +78,13 @@ export const PersonForm: React.FC<Props> = ({ person, setPerson }) => {
     );
 };
 
-// const TextInput: React.FC<{ text: string, setText: React.Dispatch<React.SetStateAction<string>> }> = ...;
+/*
+type TextInputProps = {
+    text: string,
+    setText: React.Dispatch<React.SetStateAction<string>>
+}
+const TextInput: React.FC<TextInputProps> = () => { ... };
+*/
 ```
 
 The `PersonForm` itself can easily become a reusable component that lets you freely move the `Person` state among its parent components. At the same time, it allows the implementation of form fields that need not know about the structure of the `Person` object.
