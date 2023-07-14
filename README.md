@@ -79,13 +79,13 @@ export const PersonForm: React.FC<Props> = ({ person, setPerson }) => {
     );
 };
 
-/*
 type TextInputProps = {
     text: string,
     setText: React.Dispatch<React.SetStateAction<string>>
 }
-const TextInput: React.FC<TextInputProps> = () => { ... };
-*/
+const TextInput: React.FC<TextInputProps> = ({ text, setText }) => {
+    return (<input type="text" value={text} onChange={e => setText(e.target.value)} />);
+};
 ```
 
 The `PersonForm` itself can easily become a reusable component that lets you freely move the `Person` state among its parent components.
@@ -157,8 +157,8 @@ To add additional phone numbers to the list of existing phone numbers, you can j
 
 ## Performance
 
-Per default React will rerender the entire form and **ALL** its child components.
+Per default React will rerender the entire form and **ALL** its child components if some property of the object is changed.
 To only rerender components which have their props changed React components can be wrapped in [React.memo](https://react.dev/reference/react/memo) calls.
 To support the usage of `React.memo`, `useDestructuring` saves all its produced setter functions so that they do not change from one rerender to the next, much like `useState` (but not exactly).
 That means that in the ideal scenario only the leaf component that is edited and all its parents up until the component that holds the form state are rerendered.
-Rerender count can be reduced further by implementing a debounce in leaf fields that do not immidiately call `setState` (e.g. wait while the user is typing).
+Rerender counts can be reduced further by implementing a debounce in leaf fields that do not immidiately call `setState` (e.g. wait while the user is typing).
