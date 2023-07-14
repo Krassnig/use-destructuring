@@ -1,9 +1,11 @@
 {
   "name": "use-destructuring",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "useDestructuring() is a function that destructures React setState functions",
   "main": "use-destructuring.js",
   "types": "use-destructuring.d.ts",
+  "homepage": "https://github.com/Krassnig/use-destructuring",
+  "repository": "https://github.com/Krassnig/use-destructuring",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1"

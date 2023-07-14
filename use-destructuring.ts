@@ -18,7 +18,7 @@ function useDestucturing<T extends (number extends T['length'] ? [] : any[])>(st
 function useDestucturing<T extends any[]     >(state: T, setState: SetState<T>): ArraySetState<ElementType<T>>;
 function useDestucturing<T extends {}        >(state: T, setState: SetState<T>): ObjectSetState<T>;
 function useDestucturing<T extends {} | any[]>(state: T, setState: SetState<T>): ObjectSetState<T> | ArraySetState<ElementType<T>> | TupleSetState<ElementType<T>> {
-	if (!isObjectOrArray(state)) throw new Error('useDecompose() can only accept arrays and (not-null) objects.');
+	if (!isObjectOrArray(state)) throw new Error('useDestructuring() can only accept arrays and (not-null) objects.');
 	
 	const isArr = isArray<ElementType<T>>(state);
 	const setStateRef = useRef<ArrayCache<ElementType<T>> | ObjectCache<T>>(isArr ? [] : new Map());
