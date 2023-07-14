@@ -7,23 +7,23 @@ import { useState } from "react";
 import useDestructuring from "use-destructuring";
 
 interface Person {
-	firstName: string;
-	lastName: string;
+    firstName: string;
+    lastName: string;
 }
 
 export const PersonForm: React.FC = () => {
-	
-	const [person, setPerson] = useState<Person>({ firstName: 'John', lastName: 'Smith' });
+    
+    const [person, setPerson] = useState<Person>({ firstName: 'John', lastName: 'Smith' });
 
-	const { firstName, lastName } = person; // Javascript object destructuring
-	const { setFirstName, setLastName } = useDestructuring(person, setPerson);
+    const { firstName, lastName } = person; // Javascript object destructuring
+    const { setFirstName, setLastName } = useDestructuring(person, setPerson);
 
-	return (
-		<form>
-			<input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} />
-			<input type="text" value={lastName} onChange={e => setLastName(e.target.value)} />
-		</form>
-	);
+    return (
+        <form>
+            <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} />
+            <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} />
+        </form>
+    );
 };
 ```
 
@@ -56,26 +56,26 @@ import { useState } from "react";
 import useDestructuring from "use-destructuring";
 
 interface Person {
-	firstName: string;
-	lastName: string;
+    firstName: string;
+    lastName: string;
 }
 
 type Props = {
-	person: Person;
-	setPerson: React.Dispatch<React.SetStateAction<Person>>;
+    person: Person;
+    setPerson: React.Dispatch<React.SetStateAction<Person>>;
 }
 
 export const PersonForm: React.FC<Props> = ({ person, setPerson }) => {
 
-	const { firstName, lastName } = person; // Javascript object destructuring
-	const { setFirstName, setLastName } = useDestructuring(person, setPerson);
+    const { firstName, lastName } = person; // Javascript object destructuring
+    const { setFirstName, setLastName } = useDestructuring(person, setPerson);
 
-	return (
-		<Form>
-			<TextInput text={firstName} setText={setFirstName} />
-			<TextInput text={lastName} setText={setLastName} />
-		</Form>
-	);
+    return (
+        <Form>
+            <TextInput text={firstName} setText={setFirstName} />
+            <TextInput text={lastName} setText={setLastName} />
+        </Form>
+    );
 };
 
 // const TextInput: React.FC<{ text: string, setText: React.Dispatch<React.SetStateAction<string>> }> = ...;
@@ -90,23 +90,23 @@ The `PersonForm` itself can easily become a reusable component that lets you fre
 #### PersonForm.tsx
 ```tsx
 interface Person {
-	firstName: string;
-	lastName: string;
-	phoneNumbers: string[];
+    firstName: string;
+    lastName: string;
+    phoneNumbers: string[];
 }
 
 export const PersonForm: React.FC<Props> = ({ person, setPerson }) => {
 
-	const { firstName, lastName, phoneNumbers } = person;
-	const { setFirstName, setLastName, setPhoneNumbers } = useDestructuring(person, setPerson);
+    const { firstName, lastName, phoneNumbers } = person;
+    const { setFirstName, setLastName, setPhoneNumbers } = useDestructuring(person, setPerson);
 
-	return (
-		<Form>
-			<TextInput text={firstName} setText={setFirstName} />
-			<TextInput text={lastName} setText={setLastName} />
-			<PhoneNumbersInput phoneNumbers={phoneNumbers} setPhoneNumbers={setPhoneNumbers} />
-		</Form>
-	);
+    return (
+        <Form>
+            <TextInput text={firstName} setText={setFirstName} />
+            <TextInput text={lastName} setText={setLastName} />
+            <PhoneNumbersInput phoneNumbers={phoneNumbers} setPhoneNumbers={setPhoneNumbers} />
+        </Form>
+    );
 };
 ```
 
@@ -115,27 +115,27 @@ In the `PhoneNumbersInput` component call `useDestructuring` to get a list of tu
 #### PhoneNumbersInput.tsx
 ```tsx
 type Props = {
-	phoneNumbers: string[];
-	setPhoneNumbers: React.Dispatch<React.SetState<string[]>>;
+    phoneNumbers: string[];
+    setPhoneNumbers: React.Dispatch<React.SetState<string[]>>;
 }
 
 export const PhoneNumbersInput: React.FC<Props> = ({ phoneNumbers, setPhoneNumbers }) => {
 
-	const destructuredPhoneNumbers = useDestructuring(phoneNumbers, setPhoneNumbers);
+    const destructuredPhoneNumbers = useDestructuring(phoneNumbers, setPhoneNumbers);
 
-	return (
-		<fieldset>
-			{ destructuredPhoneNumbers.map(([phoneNumber, setPhoneNumber, removePhoneNumber]) => (
-				<span key={phoneNumber}>
-					<TextInput text={phoneNumber} setPhoneNumber={setPhoneNumber} >
-					<button type="button" onClick={() => removePhoneNumber()}>X</button>
-				</span>
-			)) }
-			<button type="button" onClick={
-				() => setPhoneNumbers(oldPhoneNumbers => [...oldPhoneNumbers, '+01234567'])
-			}>Add New Telephone Number</button>
-		</fieldset>
-	);
+    return (
+        <fieldset>
+            { destructuredPhoneNumbers.map(([phoneNumber, setPhoneNumber, removePhoneNumber]) => (
+                <span key={phoneNumber}>
+                    <TextInput text={phoneNumber} setPhoneNumber={setPhoneNumber} >
+                    <button type="button" onClick={() => removePhoneNumber()}>X</button>
+                </span>
+            )) }
+            <button type="button" onClick={
+                () => setPhoneNumbers(oldPhoneNumbers => [...oldPhoneNumbers, '+01234567'])
+            }>Add New Telephone Number</button>
+        </fieldset>
+    );
 }
 ```
 
