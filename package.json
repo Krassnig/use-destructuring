@@ -1,0 +1,27 @@
+{
+  "name": "use-destructuring",
+  "version": "0.1.0",
+  "description": "useDestructuring() is a function that destructures React setState functions",
+  "main": "use-destructuring.js",
+  "types": "use-destructuring.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "form",
+    "react",
+    "hook",
+    "destructuring",
+    "setState"
+  ],
+  "author": "Niklas Kraßnig",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "typescript": "^5.1.6"
+  }
+}
