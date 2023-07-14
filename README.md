@@ -1,6 +1,7 @@
 # useDestructuring
 
-When calling `useDestructuring` matching setState function for each property in a Javascript object are created. The primary use case of `useDestructuring` is for handling forms in React. 
+When calling `useDestructuring` matching setState function for each property in a Javascript object are created.
+The primary use case of `useDestructuring` is for handling forms in React. 
 
 ```tsx
 import { useState } from "react";
@@ -87,11 +88,15 @@ const TextInput: React.FC<TextInputProps> = () => { ... };
 */
 ```
 
-The `PersonForm` itself can easily become a reusable component that lets you freely move the `Person` state among its parent components. At the same time, it allows the implementation of form fields that need not know about the structure of the `Person` object.
+The `PersonForm` itself can easily become a reusable component that lets you freely move the `Person` state among its parent components.
+At the same time, it allows the implementation of form fields that need not know about the structure of the `Person` object.
 
 ## Arrays
 
-`useDestructuring` also supports destructuring of arrays. For example, our `Person` object from before might contain a list of telephone numbers. Simply extend the `PersonForm` like you would with any other property. In this case the list of phone numbers is handled in a separate component.
+`useDestructuring` also supports destructuring of arrays.
+For example, our `Person` object from before might contain a list of telephone numbers.
+Simply extend the `PersonForm` like you would any other property.
+In this example the list of phone numbers is handled in a separate component.
 
 #### PersonForm.tsx
 ```tsx
@@ -116,7 +121,10 @@ export const PersonForm: React.FC<Props> = ({ person, setPerson }) => {
 };
 ```
 
-In the `PhoneNumbersInput` component call `useDestructuring` to get a list of tuples `destructuredPhoneNumbers` in which each tuple contains one entry of `[phoneNumber, setPhoneNumber, removePhoneNumber]`. The first value is just the value in the `phoneNumbers[i]` array itself, the second is a `SetState` function that overwrites that array value at index `i` and the third removes the element at position `i` from the array.
+In the `PhoneNumbersInput` component call `useDestructuring` to get a list of tuples `destructuredPhoneNumbers`
+in which each tuple contains one entry of `[phoneNumber, setPhoneNumber, removePhoneNumber]`.
+The first value is just the value in the `phoneNumbers[i]` array itself, the second is a `SetState` function
+that overwrites that array element at index `i` and the third removes the element at position `i` from the array.
 
 #### PhoneNumbersInput.tsx
 ```tsx
@@ -149,4 +157,8 @@ To add additional phone numbers to the list of existing phone numbers, you can j
 
 ## Performance
 
-Per default React will rerender the entire form and **ALL** its child components. To only rerender components which have their props changed React components can be wrapped in [React.memo](https://react.dev/reference/react/memo) calls. To support the usage of `React.memo`, `useDestructuring` saves all its produced setter functions so that they do not change from one rerender to the next, much like `useState` (but not exactly). That means that in the ideal scenario only the leaf component that is edited and all its parents up until the component that holds the form state are rerendered. Rerender count can be reduced further by implementing a debounce in leaf fields that do not immidiately call `setState` (e.g. waiting while typing).
+Per default React will rerender the entire form and **ALL** its child components.
+To only rerender components which have their props changed React components can be wrapped in [React.memo](https://react.dev/reference/react/memo) calls.
+To support the usage of `React.memo`, `useDestructuring` saves all its produced setter functions so that they do not change from one rerender to the next, much like `useState` (but not exactly).
+That means that in the ideal scenario only the leaf component that is edited and all its parents up until the component that holds the form state are rerendered.
+Rerender count can be reduced further by implementing a debounce in leaf fields that do not immidiately call `setState` (e.g. wait while the user is typing).
