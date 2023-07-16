@@ -1,6 +1,6 @@
 {
   "name": "use-destructuring",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "useDestructuring() is a function that destructures React setState functions",
   "main": "use-destructuring.js",
   "types": "use-destructuring.d.ts",
