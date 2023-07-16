@@ -50,7 +50,8 @@ import useDestructuring from "use-destructuring";
 
 ## Using Destructuring for Abstraction
 
-`useDestructuring` allows you to abstract form components in multiple ways.
+Although the first example can easily be implemented without using `useDestructuring`,
+once your forms grows in complexity `useDestructuring` allows you to easily abstract form components in multiple ways.
 
 ```tsx
 import { useState } from "react";
@@ -157,7 +158,7 @@ To add additional phone numbers to the list of existing phone numbers, you can j
 
 ## Performance
 
-Per default React will rerender the entire form and **ALL** its child components if some property of the object is changed.
+Per default React will rerender the entire form and **ALL** its child components if some property of the form component state is changed.
 To only rerender components which have their props changed React components can be wrapped in [React.memo](https://react.dev/reference/react/memo) calls.
 To support the usage of `React.memo`, `useDestructuring` saves all its produced setter functions so that they do not change from one rerender to the next, much like `useState` (but not exactly).
 That means that in the ideal scenario only the leaf component that is edited and all its parents up until the component that holds the form state are rerendered.
