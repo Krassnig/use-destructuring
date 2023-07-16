@@ -39,6 +39,11 @@ function useDestucturing<T extends {} | any[]>(state: T, setState: SetState<T>):
 			);
 		}
 	}, [setState, isArr ? state : hashStrings(keysOf(state))]);
+	/*
+		sadly we need to hash the object keys here because the output of the same object does not produce
+		the same array and useEffect does not accept variable args dependencies
+		Object.keys({ a: "" }) === Object.keys({ a: "" }) -> false
+	*/
 
 	return result;
 };
