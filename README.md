@@ -1,7 +1,7 @@
 # useDestructuring
 
-When calling `useDestructuring` matching setState function for each property in a Javascript object are created.
-The primary use case of `useDestructuring` is for handling forms in React. 
+When calling `useDestructuring` matching setState function for each property in an object are created.
+The primary use case of `useDestructuring` is for simplifying forms in React. 
 
 ```tsx
 import { useState } from "react";
@@ -51,7 +51,7 @@ import useDestructuring from "use-destructuring";
 ## Using Destructuring for Abstraction
 
 Although the first example can easily be implemented without using `useDestructuring`,
-once your forms grows in complexity `useDestructuring` allows you to easily abstract form components in multiple ways.
+once your forms grow in complexity `useDestructuring` allows you to easily abstract form components in multiple ways.
 
 ```tsx
 import { useState } from "react";
